@@ -21,6 +21,7 @@ chromium
 chromium-l10n
 cups
 curl
+dbus-x11
 ffmpeg
 fcitx5
 fcitx5-config-qt
@@ -43,6 +44,7 @@ mplayer
 nano
 ncurses-term
 net-tools
+novnc
 openssh-client
 openssh-sftp-server
 pavucontrol
@@ -61,8 +63,10 @@ unzip
 usbutils
 vim
 wget
+websockify
 x11vnc
 xinput
+xvfb
 xfce4-power-manager
 EOF
 
