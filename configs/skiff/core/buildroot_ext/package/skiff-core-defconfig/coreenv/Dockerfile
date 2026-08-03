@@ -15,7 +15,6 @@ RUN rm -rf /var/lib/apt/lists/* && \
 # Setup packages list to install
 RUN cat > /etc/install-pkgs-list <<EOF
 accountsservice
-at-spi2-core
 autotools-dev
 build-essential
 chromium
@@ -81,6 +80,8 @@ RUN set -ex && \
         -o "Dpkg::Options::=--force-confdef" \
     -o "Dpkg::Options::=--force-confnew" && \
     rm /etc/install-pkgs-list
+
+RUN apt-get install -y --no-install-recommends at-spi2-core
 
 # remove unnecessary content
 RUN \
