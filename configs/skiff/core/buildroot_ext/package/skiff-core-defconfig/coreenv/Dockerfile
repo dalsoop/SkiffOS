@@ -15,6 +15,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
 # Setup packages list to install
 RUN cat > /etc/install-pkgs-list <<EOF
 accountsservice
+at-spi2-core
 autotools-dev
 build-essential
 chromium
