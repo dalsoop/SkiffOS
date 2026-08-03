@@ -81,7 +81,7 @@ RUN set -ex && \
     -o "Dpkg::Options::=--force-confnew" && \
     rm /etc/install-pkgs-list
 
-RUN apt-get install -y --no-install-recommends at-spi2-core
+RUN apt-get install -y --no-install-recommends at-spi2-core tumbler
 
 # remove unnecessary content
 RUN \
