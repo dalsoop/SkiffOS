@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1.8-labs
 ARG DISTRO
+ARG KOREAN_BASE=stage2
 FROM ${DISTRO:-debian:sid} AS stage1
 
 # setup environment
@@ -108,11 +109,6 @@ ENV container=docker \
   QT_IM_MODULE=fcitx \
   XMODIFIERS=@im=fcitx
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get install -y --no-install-recommends at-spi2-core tumbler && \
-    apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/*
-
 # Show the user list in lightdm
 # force Chromium to use the GPU
 RUN \
@@ -185,3 +181,10 @@ RUN systemctl set-default graphical.target && \
 
 WORKDIR /
 ENTRYPOINT ["/lib/systemd/systemd"]
+
+FROM ${KOREAN_BASE} AS final
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --no-install-recommends at-spi2-core tumbler && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
