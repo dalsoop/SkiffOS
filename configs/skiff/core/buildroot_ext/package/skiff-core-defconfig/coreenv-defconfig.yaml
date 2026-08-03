@@ -1,7 +1,7 @@
 # Documented at https://github.com/skiffos/skiff-core
 containers:
   core: # name of the docker container
-    image: skiffos/skiff-core-debian:latest
+    image: dalsoop/skiffos-korean:ff76ef617f9434f232b0ae1a6374e1a2ad77b28d
     entrypoint: ["/lib/systemd/systemd"]
     # systemd: indicate this is a container
     env: ["container=docker"]
@@ -43,12 +43,12 @@ users: # can add unlimited users
     auth:
       copyRootKeys: true
 images:
-  skiffos/skiff-core-debian:latest:
+  dalsoop/skiffos-korean:ff76ef617f9434f232b0ae1a6374e1a2ad77b28d:
     pull:
       # images are provided for arm64, arm, amd64
       # also an option: policy: ifbuildfails
       policy: ifnotexists
       # avoid docker hub rate limits
-      registry: quay.io
+      registry: ghcr.io
     build:
       source: /opt/skiff/coreenv/base

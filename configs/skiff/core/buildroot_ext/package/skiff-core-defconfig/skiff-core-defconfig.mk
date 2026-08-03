@@ -15,4 +15,13 @@ endef
 
 SKIFF_CORE_DEFCONFIG_POST_INSTALL_TARGET_HOOKS += SKIFF_CORE_DEFCONFIG_INSTALL_COREENV
 
+define SKIFF_CORE_DEFCONFIG_INSTALL_LOCALE_TOOL
+	if [ ! -x $(TARGET_DIR)/usr/bin/locale ] && [ -x $(STAGING_DIR)/usr/bin/locale ]; then \
+		$(INSTALL) -D -m 0755 $(STAGING_DIR)/usr/bin/locale \
+			$(TARGET_DIR)/usr/bin/locale; \
+	fi
+endef
+
+SKIFF_CORE_DEFCONFIG_POST_INSTALL_TARGET_HOOKS += SKIFF_CORE_DEFCONFIG_INSTALL_LOCALE_TOOL
+
 $(eval $(generic-package))
