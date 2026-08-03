@@ -81,8 +81,6 @@ RUN set -ex && \
     -o "Dpkg::Options::=--force-confnew" && \
     rm /etc/install-pkgs-list
 
-RUN apt-get install -y --no-install-recommends at-spi2-core tumbler
-
 # remove unnecessary content
 RUN \
     apt-get autoremove -y && \
@@ -109,6 +107,11 @@ ENV container=docker \
   GTK_IM_MODULE=fcitx \
   QT_IM_MODULE=fcitx \
   XMODIFIERS=@im=fcitx
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --no-install-recommends at-spi2-core tumbler && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
 
 # Show the user list in lightdm
 # force Chromium to use the GPU
